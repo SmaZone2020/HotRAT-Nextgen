@@ -1,0 +1,11 @@
+﻿@page "/screenmonitor"
+<h3>ScreenMonitor</h3>
+<button class="btn btn-danger btn-sm" @onclick="() => getFrame()">Get Frame</button>
+<img alt="ovo" src="data:image/png;base64,@Data.MainData.ImgBase64" />
+@code {
+    public static void getFrame()
+    {
+        if(Data.MainData.SelectDevice != null)
+            Program.server.SendDataToClientAsync(Data.MainData.SelectDevice.IP, "SM|||GET");
+    }
+}

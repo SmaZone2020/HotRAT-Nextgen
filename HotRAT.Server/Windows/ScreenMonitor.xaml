@@ -1,0 +1,29 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotRAT.Server.Windows"
+        xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+        xmlns:ikw="http://schemas.inkore.net/lib/ui/wpf" x:Class="HotRAT.Server.Windows.ScreenMonitor"
+        mc:Ignorable="d"
+        ui:WindowHelper.UseModernWindowStyle="True"
+        ui:WindowHelper.SystemBackdropType="Mica"
+        Title="ScreenMonitor" Height="585" Width="1000" Background="#FFF7F7F7">
+    <Grid Margin="0,40,0,0">
+        <!--
+        <Image x:Name="Display" Margin="0,32,0,0" Source="/ba546e3b9b19dca325c9217d7e235dd8.png"/>
+        -->
+        <Border x:Name="Display" Margin="0,32,0,0" PreviewKeyDown="Display_PreviewKeyDown" MouseDown="Display_MouseDown" MouseMove="Display_MouseMove" MouseUp="Display_MouseUp">
+            <Border.Background>
+                <ImageBrush ImageSource="/ba546e3b9b19dca325c9217d7e235dd8.png" Stretch="Uniform" TileMode="Tile"/>
+            </Border.Background>
+        </Border>
+        <Grid VerticalAlignment="Top" Height="30">
+            <ui:ToggleSwitch x:Name="control" Margin="35,0,0,0" OffContent="Enable Controls" OnContent="Disable Controls" PreviewMouseLeftButtonDown="control_PreviewMouseLeftButtonDown"/>
+            <ui:ToggleSwitch x:Name="start" Margin="232,0,0,0" OffContent="Start receiving" OnContent="Stop receiving" PreviewMouseLeftButtonDown="start_PreviewMouseLeftButtonDown"/>
+            <Button x:Name="GetFrame" Content="GetFrame" Margin="415,0,0,0" Width="101" Height="24" Padding="0,0,0,0" Click="GetFrame_Click"/>
+        </Grid>
+        <TextBlock x:Name="title" Height="25" Margin="20,-35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Foreground="#FFB7B7B7"/>
+    </Grid>
+</Window>

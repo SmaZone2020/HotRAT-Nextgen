@@ -1,0 +1,165 @@
+﻿@page "/fileexplorer"
+
+<div class="container">
+    <!-- 按钮栏 -->
+    <div class="row mb-3">
+        <div class="col-12 col-md-6 d-flex mb-2 mb-md-0">
+            <button @onclick="Upload_Click" class="btn btn-primary me-2">Upload</button>
+            <button @onclick="BackPath_Click" class="btn btn-primary">Back</button>
+        </div>
+        <div class="col-12 col-md-6 d-flex">
+            <input type="text" @bind="FolderPath" class="form-control me-2" @onkeydown="OnFolderPathEnter" />
+            <select @onchange="OnDeviceSelected" class="form-select">
+                @foreach (var drive in Drives)
+                {
+                    <option value="@drive">@drive</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <!-- 文件列表 -->
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Icon</th>
+                    <th>FileName</th>
+                    <th>Type</th>
+                    <th>Created Time</th>
+                    <th>Modified Time</th>
+                    <th>Size</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var file in Files)
+                {
+                    <tr @ondblclick="() => OnFileDoubleClick(file)">
+                        <td>
+                            @if (file.Type == "File")
+                            {
+                                <i class="fas fa-file"></i>
+                            }
+                            else
+                            {
+                                <i class="fas fa-folder"></i>
+                            }
+                        </td>
+                        <td>@file.FileName</td>
+                        <td>@file.Type</td>
+                        <td>@file.CreatTime</td>
+                        <td>@file.ChangeTime</td>
+                        <td>@file.Size</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 文件菜单 -->
+    @if (SelectedFile != null)
+    {
+        <div class="context-menu">
+            <button @onclick="OpenFile_Click">Open</button>
+            <button @onclick="CopyFile_Click">Copy</button>
+            <button @onclick="CutFile_Click">Cut</button>
+            <button @onclick="RenameFile_Click">Rename</button>
+            <button @onclick="DeleteFile_Click">Delete</button>
+            <button @onclick="DownloadItem_Click">Download</button>
+        </div>
+    }
+</div>
+
+@code {
+    static IJSRuntime JS;
+    public static List<string> Drives { get; set; } = new List<string>();
+    public static List<Data.File> Files { get; set; } = new List<Data.File>();
+    public Data.File SelectedFile { get; set; }
+    public string FolderPath { get; set; } = "C:\\";
+
+    protected override async Task OnInitializedAsync()
+    {
+        LoadDrives();
+        await LoadFolder(FolderPath);
+    }
+
+    private void LoadDrives()
+    {
+        foreach (var drive in DriveInfo.GetDrives())
+        {
+            Drives.Add(drive.Name);
+        }
+    }
+
+    public static async Task LoadFolder(string folderPath)
+    {
+        Files.Clear();
+        try
+        {
+            var directoryInfo = new DirectoryInfo(folderPath);
+            foreach (var fileSystemInfo in directoryInfo.GetFileSystemInfos())
+            {
+                Files.Add(new Data.File()
+                {
+                    FileName = fileSystemInfo.Name,
+                    ChangeTime = fileSystemInfo.LastWriteTime.ToString(),
+                    CreatTime = fileSystemInfo.CreationTime.ToString(),
+                    Size = fileSystemInfo is FileInfo fileInfo ? fileInfo.Length : 0,
+                    Type = fileSystemInfo is FileInfo ? "File" : "Dir"
+                });
+            }
+        }
+        catch (Exception ex)
+        {
+            await JS.InvokeVoidAsync("alert", $"Error: {ex.Message}");
+        }
+    }
+
+    private async Task OnFolderPathEnter(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter" && Directory.Exists(FolderPath))
+        {
+            await LoadFolder(FolderPath);
+        }
+    }
+
+    private async Task OnFileDoubleClick(Data.File file)
+    {
+        if (file.Type == "Dir")
+        {
+            FolderPath = Path.Combine(FolderPath, file.FileName);
+            await LoadFolder(FolderPath);
+        }
+    }
+
+    private void BackPath_Click()
+    {
+        if (Directory.Exists(Path.GetDirectoryName(FolderPath)))
+        {
+            FolderPath = Path.GetDirectoryName(FolderPath);
+            LoadFolder(FolderPath);
+        }
+    }
+
+    private void OnDeviceSelected(ChangeEventArgs e)
+    {
+        var selectedDrive = e.Value.ToString();
+        if (!string.IsNullOrEmpty(selectedDrive))
+        {
+            FolderPath = selectedDrive;
+            LoadFolder(FolderPath);
+        }
+    }
+
+    private void OpenFile_Click() { /* TODO */ }
+    private void CopyFile_Click() { /* TODO */ }
+    private void CutFile_Click() { /* TODO */ }
+    private void RenameFile_Click() { /* TODO */ }
+    private void DeleteFile_Click() { /* TODO */ }
+    private void DownloadItem_Click() { /* TODO */ }
+
+    private void Upload_Click() 
+    {
+        // TODO: Implement file upload logic using InputFile Blazor component or JavaScript interop
+    }
+}

@@ -1,0 +1,45 @@
+﻿<Page x:Class="HotRAT.Server.Pages.ClientList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HotRAT.Server.Pages"
+      mc:Ignorable="d" 
+      xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ClientList">
+
+    <Grid>
+        <ui:ListView Name="listViewDevices" ItemsSource="{Binding DeviceL}" SelectionChanged="listViewDevices_SelectionChanged">
+            <ui:ListView.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Grid.Row="0" Text="{Binding DeviceName}" Margin="5,0,5,0" MaxWidth="120" />
+                        <TextBlock Grid.Row="0" Text="{Binding UserName}" Margin="5,0,5,0" MaxWidth="120" />
+                        <TextBlock Grid.Row="1" Text="{Binding IP}" Margin="5,0,5,0" MaxWidth="120" />
+                        <TextBlock Grid.Row="2" Text="{Binding City}" Margin="5,0,5,0" MaxWidth="140" />
+                        <TextBlock Grid.Row="3" Text="{Binding CameraDevice}" Margin="5,0,5,0" MaxWidth="120" />
+                        <TextBlock Grid.Row="4" Text="{Binding InstallTime}" Margin="5,0,5,0" MaxWidth="120" />
+                        <TextBlock Grid.Row="5" Text="{Binding LoaderName}" Margin="5,0,5,0" MaxWidth="140" />
+                        <TextBlock Grid.Row="6" Text="{Binding QQNumber}" Margin="5,0,5,0" MaxWidth="120" />
+                        <TextBlock Grid.Row="7" Text="{Binding ProcessID}" Margin="5,0,5,0" MaxWidth="40" />
+                        <TextBlock Grid.Row="8" Text="{Binding XY}" Margin="5,0,5,0" MaxWidth="130" />
+                        <TextBlock Grid.Row="9" Text="{Binding PhoneNumber}" Margin="5,0,5,0" MaxWidth="90" />
+                        <TextBlock Grid.Row="10" Text="{Binding QQKey}" Margin="5,0,5,0" MaxWidth="60" />
+                        <TextBlock Grid.Row="11" Text="{Binding KeyType}" Margin="5,0,5,0" MaxWidth="60" />
+
+                    </WrapPanel>
+                </DataTemplate>
+            </ui:ListView.ItemTemplate>
+            <ui:ListView.ContextMenu>
+                <ContextMenu PlacementTarget="{Binding RelativeSource={RelativeSource Self}}">
+                    <MenuItem Header="Offline" Click="MenuItem_Offline_Click" />
+                    <MenuItem Header="Screen Monitor" Click="MenuItem_ScreenMonitor_Click" />
+                    <MenuItem Header="Console" Click="MenuItem_Console_Click" />
+                    <MenuItem Header="File Explorer" Click="MenuItem_FileManager_Click" />
+                    <MenuItem Header="Alert" Click="MenuItem_Alert_Click" />
+                </ContextMenu>
+            </ui:ListView.ContextMenu>
+        </ui:ListView>
+    </Grid>
+</Page>

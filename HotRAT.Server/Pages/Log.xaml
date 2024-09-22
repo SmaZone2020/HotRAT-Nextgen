@@ -1,0 +1,30 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HotRAT.Server.Pages"
+      xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern" x:Class="HotRAT.Server.Pages.Log"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Log">
+
+    <Grid>
+
+        <ui:ListView x:Name="LogBox" FontSize="14" FontFamily="Cascadia Mono">
+            <ui:ListView.ContextMenu>
+                <ContextMenu PlacementTarget="{Binding RelativeSource={RelativeSource Self}}">
+                    <MenuItem Click="MenuItem_Click" >
+                        <MenuItem.Header>
+                            <Grid>
+                                <TextBlock Text="Copy" HorizontalAlignment="Left" Margin="21,0,0,0" Width="80"/>
+                                <ui:FontIcon Icon="{x:Static ui:SegoeFluentIcons.Copy}" HorizontalAlignment="Left"/>
+                            </Grid>
+                        </MenuItem.Header>
+                    </MenuItem>
+                </ContextMenu>
+            </ui:ListView.ContextMenu>
+        </ui:ListView>
+
+    </Grid>
+</Page>
