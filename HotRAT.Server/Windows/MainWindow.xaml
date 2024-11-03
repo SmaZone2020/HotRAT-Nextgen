@@ -5,16 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HotRAT.Server"
         xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
-        xmlns:ui1="http://schemas.lepo.co/wpfui/2022/xaml"
-        x:Class="HotRAT.Server.MainWindow" 
-        mc:Ignorable="d"
         ui:WindowHelper.UseModernWindowStyle="True"
         ui:WindowHelper.SystemBackdropType="Mica"
+        ui:TitleBar.Height="36"
+        x:Class="HotRAT.Server.MainWindow" 
+        mc:Ignorable="d"
+
         Title="MainWindow" Height="695" Width="1220" 
-    Background="#FFF1F1F1"
-    WindowStyle="None" MinWidth="950" MinHeight="556">
+    
+        MinWidth="950" 
+        MinHeight="556">
     <Grid>
-        <TabControl x:Name="TabCont" ui:TabControlHelper.IsAddTabButtonVisible="False" Margin="0,40,0,0">
+        <TabControl x:Name="TabCont" ui:TabControlHelper.IsAddTabButtonVisible="False">
 
             <TabItem VerticalAlignment="Top" HorizontalAlignment="Left" Width="143" Height="36">
                 <TabItem.Header>
@@ -75,14 +77,7 @@
                 </TabItem.Header>
                 <ui:Frame Source="/Pages/Settings.xaml"/>
             </TabItem>
-           
+
         </TabControl>
-        <Grid VerticalAlignment="Top" Height="40">
-            <ui1:Image HorizontalAlignment="Left" Height="25" VerticalAlignment="Center" Width="25" Source="/ba546e3b9b19dca325c9217d7e235dd8.png" Margin="8,0,0,0"/>
-            <ui1:TextBlock HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" VerticalAlignment="Center" Width="214" LineHeight="10" FontSize="14" Foreground="#FFAFAFAF" Margin="44,0,0,0">
-                <Run Language="zh-cn" Text="HotRAT - Nextgen [WPF Server]"/>
-            </ui1:TextBlock>
-            <ui1:TextBlock x:Name="InfoTitle" Height="18" TextWrapping="Wrap" VerticalAlignment="Center" LineHeight="10" FontSize="14" Foreground="#FFAFAFAF" Margin="265,0,37,0"/>
-        </Grid>
     </Grid>
 </Window>

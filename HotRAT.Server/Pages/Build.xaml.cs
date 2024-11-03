@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using MessageBox = iNKORE.UI.WPF.Modern.Controls.MessageBox;
 
 namespace HotRAT.Server.Pages
 {
@@ -56,9 +57,7 @@ namespace HotRAT.Server.Pages
             }
             catch (Exception ex)
             {
-                Wpf.Ui.Controls.MessageBox msg = new Wpf.Ui.Controls.MessageBox();
-                msg.Content = ex.Message;
-                msg.ShowDialogAsync();
+                MessageBox.Show(ex.Message);
             }
         }
         private async Task RunBatchFileAsync(string batFilePath)

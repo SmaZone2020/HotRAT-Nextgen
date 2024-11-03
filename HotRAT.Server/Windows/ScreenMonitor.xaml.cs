@@ -11,7 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
+using MessageBox = iNKORE.UI.WPF.Modern.Controls.MessageBox;
 namespace HotRAT.Server.Windows
 {
     /// <summary>
@@ -22,7 +22,6 @@ namespace HotRAT.Server.Windows
         private static ScreenMonitor _instance;
         public static bool RECEIV = false;
         public static bool CONTROL = false;
-        string TITLE = $"Display:[{RECEIV}]   Control:[{CONTROL}]";
         private Task longRunningTask;
 
         public ScreenMonitor()
@@ -33,14 +32,7 @@ namespace HotRAT.Server.Windows
             {
                 if (MainData.SelectDevice == null)
                 {
-                    Wpf.Ui.Controls.MessageBox msg = new Wpf.Ui.Controls.MessageBox
-                    {
-                        Content = "No valid instance has been selected.",
-                        Title = "Error!!!                 ",
-                        Height = 200,
-                        Width = 500
-                    };
-                    await msg.ShowDialogAsync();
+                    MessageBox.ShowAsync("No valid instance has been selected.");
                     this.Close();
                 }
             };
@@ -90,14 +82,14 @@ namespace HotRAT.Server.Windows
             if (start.IsOn)
             {
                 RECEIV = false;
-                title.Text = TITLE;
+                Title = $"Display:[{RECEIV}]   Control:[{CONTROL}]";
                 Log.AddLog("停止请求", Data.SoftWareSettings.LightFontColor);
             }
             else
             {
                 RECEIV = true;
                 longRunningTask = KeepGetFrame();
-                title.Text = TITLE;
+                Title = $"Display:[{RECEIV}]   Control:[{CONTROL}]";
                 Log.AddLog("开始请求", Data.SoftWareSettings.LightFontColor);
             }
         }

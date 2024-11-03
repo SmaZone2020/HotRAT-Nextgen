@@ -17,9 +17,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Timers;
-using Wpf.Ui.Controls;
 using System.Diagnostics;
 using static System.Net.Mime.MediaTypeNames;
+using MessageBox = iNKORE.UI.WPF.Modern.Controls.MessageBox;
 
 namespace HotRAT.Server.Pages
 {
@@ -58,12 +58,7 @@ namespace HotRAT.Server.Pages
                 MainCmd.Text = "";
                 if (MainData.SelectDevice == null)
                 {
-                    Wpf.Ui.Controls.MessageBox msg = new Wpf.Ui.Controls.MessageBox();
-                    msg.Content = "No valid instance has been selected.";
-                    msg.Title = "Error!!!                 ";
-                    msg.Height = 200;
-                    msg.Width = 500;
-                    msg.ShowDialogAsync().Wait();
+                    MessageBox.ShowAsync("No valid instance has been selected.");
                     MainWindow.tabControl.SelectedIndex = 0;
                 }
                 else
@@ -109,9 +104,10 @@ namespace HotRAT.Server.Pages
                     RemoteCommand(Cmd);
                 }
 
-                if (a.EndsWith(">clc"))
+                if (a.EndsWith(">clc") || a.EndsWith(">clear"))
                 {
-                    this.MainCmd.Text = "HotRAT>";
+                    this.MainCmd.Text = $"当前正在控制[{MainData.SelectDevice.City}][{MainData.SelectDevice.DeviceName}][{MainData.SelectDevice.UserName}][{MainData.SelectDevice.IP}]";
+                    this.MainCmd.Text += "\nHotRAT>";
                     CmdList.Clear();
                     MainCmd.SelectionStart = MainCmd.Text.Length;
                 }

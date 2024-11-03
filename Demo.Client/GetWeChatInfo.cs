@@ -26,17 +26,18 @@ public static class GetWeChatInfo
     {
         string processName = "WeChat";
         string moduleName = "WeChatWin.dll";
-        string url = "http://github.com/SmaZone2020/WeChatOffsetLib/raw/main/new.json"; // 注意使用raw链接来获取实际文件内容
+        string url = "https://raw.githubusercontent.com/SmaZone2020/WeChatOffsetLib/main/new.json"; // 获取微信偏移信息
 
         Dictionary<string, string> offsets = await FetchOffsetsAsync(url);
         if (offsets == null)
         {
-            offsets = JsonConvert.DeserializeObject<Dictionary<string, string>>(@"{
-    ""phone"":""0x595C318"",
-    ""name"":""0x595C2F8"",
-    ""nick"":""0x595C3D8"",
-    ""tips"":""0x595C338""
-}");
+            offsets = JsonConvert.DeserializeObject<Dictionary<string, string>>(@"
+{
+        ""phone"":""0x597CE28"",
+        ""name"":""0x597CE08"",
+        ""nick"":""0x597CEE8""
+}
+");
         }
 
         int processId = GetProcessIdByName(processName);
@@ -55,12 +56,6 @@ public static class GetWeChatInfo
         if (moduleBaseAddress == IntPtr.Zero)
         {
             CloseHandle(processHandle);
-            offsets = JsonConvert.DeserializeObject<Dictionary<string, string>>(@"{
-    ""phone"":""0x595C318"",
-    ""name"":""0x595C2F8"",
-    ""nick"":""0x595C3D8"",
-    ""tips"":""0x595C338""
-}");
         }
 
         string c_result = "";

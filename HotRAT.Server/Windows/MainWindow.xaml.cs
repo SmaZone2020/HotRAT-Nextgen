@@ -27,7 +27,7 @@ namespace HotRAT.Server
             {
                 MainData.DeviceNumber = 0;
                 MainData.StartTime = DateTime.Now.ToString("G");
-                this.InfoTitle.Text = $"UserName[{MainData.NowDeviceName}] | DeviceNumber [{MainData.DeviceNumber}] | StartTime[{MainData.StartTime}]";
+                ChangeTitle();
                 Directory.CreateDirectory("Images");
                 SoftWareSettings.IsLight = true;
                 server.Start();
@@ -35,5 +35,9 @@ namespace HotRAT.Server
             tabControl = TabCont;
         }
 
+        void ChangeTitle()
+        {
+            Title = $"HotRAT - Nextgen [WPF Server]  UserName[{MainData.NowDeviceName}] | DeviceNumber [{MainData.DeviceNumber}] | StartTime[{MainData.StartTime}]";
+        }
     }
 }

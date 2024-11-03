@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using MessageBox = iNKORE.UI.WPF.Modern.Controls.MessageBox;
 
 namespace HotRAT.Server.Pages
 {
@@ -40,12 +41,7 @@ namespace HotRAT.Server.Pages
                 //LoadFolder(LoadPath);
                 if(MainData.SelectDevice == null)
                 {
-                    Wpf.Ui.Controls.MessageBox msg = new Wpf.Ui.Controls.MessageBox();
-                    msg.Content = "No valid instance has been selected.";
-                    msg.Title = "Error!!!                 ";
-                    msg.Height = 200;
-                    msg.Width = 500;
-                    msg.ShowDialogAsync().Wait();
+                    MessageBox.ShowAsync("No valid instance has been selected.");
                     MainWindow.tabControl.SelectedIndex = 0;
                     return;
                 }

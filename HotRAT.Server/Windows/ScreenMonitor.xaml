@@ -10,7 +10,7 @@
         ui:WindowHelper.UseModernWindowStyle="True"
         ui:WindowHelper.SystemBackdropType="Mica"
         Title="ScreenMonitor" Height="585" Width="1000" Background="#FFF7F7F7">
-    <Grid Margin="0,40,0,0">
+    <Grid>
         <!--
         <Image x:Name="Display" Margin="0,32,0,0" Source="/ba546e3b9b19dca325c9217d7e235dd8.png"/>
         -->
@@ -24,6 +24,5 @@
             <ui:ToggleSwitch x:Name="start" Margin="232,0,0,0" OffContent="Start receiving" OnContent="Stop receiving" PreviewMouseLeftButtonDown="start_PreviewMouseLeftButtonDown"/>
             <Button x:Name="GetFrame" Content="GetFrame" Margin="415,0,0,0" Width="101" Height="24" Padding="0,0,0,0" Click="GetFrame_Click"/>
         </Grid>
-        <TextBlock x:Name="title" Height="25" Margin="20,-35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" Foreground="#FFB7B7B7"/>
     </Grid>
 </Window>

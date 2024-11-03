@@ -4,16 +4,17 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:HotRAT.Server.Pages"
-      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml" x:Class="HotRAT.Server.Pages.Settings"
+      xmlns:ui="http://schemas.inkore.net/lib/ui/wpf/modern"
+      x:Class="HotRAT.Server.Pages.Settings"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Settings">
 
     <Grid>
 
-        <ui:NumberBox x:Name="Port_Input" HorizontalAlignment="Left" Height="35" Margin="40,60,0,0" TextWrapping="Wrap" Text="8081" VerticalAlignment="Top" Width="175" Minimum="20" Maximum="65535" Value="8081" InputScope="Number"/>
-        <ui:TextBlock HorizontalAlignment="Left" Height="20" Margin="40,40,0,0" TextWrapping="Wrap" Text="Port" VerticalAlignment="Top" Width="45" Foreground="#FFCECECE" FontSize="16"/>
-        <ui:Button x:Name="Port_Save" Content="Save" Height="30" Margin="78,105,0,0" VerticalAlignment="Top" Width="100" Click="Port_Save_Click"/>
+        <ui:NumberBox x:Name="Port_Input" HorizontalAlignment="Left" Height="35" Margin="40,60,0,0" Text="8081" VerticalAlignment="Top" Width="175" Minimum="20" Maximum="65535" Value="8081" InputScope="Number"/>
+        <TextBlock HorizontalAlignment="Left" Height="20" Margin="40,40,0,0" TextWrapping="Wrap" Text="Port" VerticalAlignment="Top" Width="45" Foreground="#FFCECECE" FontSize="16"/>
+        <Button x:Name="Port_Save" Content="Save" Height="30" Margin="78,105,0,0" VerticalAlignment="Top" Width="100" Click="Port_Save_Click"/>
 
     </Grid>
 </Page>
