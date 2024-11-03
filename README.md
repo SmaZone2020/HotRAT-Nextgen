@@ -1,44 +1,46 @@
 
 # HotRAT-Nextgen
 
-## ��Ŀ���
+## 项目简介
 
-**HotRAT-Nextgen** �ǻ��� [HotRAT](https://github.com/Kr9jd/HotRAT) ���ж��ο�����һ����ѿ�Դ��Զ�̿�����Ŀ����Ϊ�û��ṩ��һ�׹���ǿ���Զ�̿��ƹ��ߣ�֧���豸��Ϣ��ȡ���ļ���������Ļ��ص�һϵ�в�����
+**HotRAT-Nextgen** 是基于 [HotRAT](https://github.com/Kr9jd/HotRAT) 进行二次开发的一个免费开源的远程控制项目。它为用户提供了一套功能强大的远程控制工具，支持设备信息获取、文件管理、屏幕监控等一系列操作。
 
-### ������ɫ
+### 功能特色
 
-- **�豸��Ϣ��ȡ**��֧�ֻ�ȡԶ���豸�� IP ��ַ�����ڳ��С���γ�ȡ�΢�źš��ֻ��š�QQ �ŵ���Ϣ��
-- **�ļ�����**������������ϴ������غ�ɾ��Զ���豸�ϵ��ļ���
-- **��Ļ���**��ʵʱ�鿴Զ���豸����Ļ��������Ļ�����ļ�ء�
-- **������**��Զ�̿���Ŀ���豸����꣬���в�����
-- **Զ�� Shell**��ͨ����������Ŀ���豸��ִ��Զ�� Shell ���
+- **设备信息获取**：支持获取远程设备的 IP 地址、所在城市、经纬度、微信号、手机号、QQ 号等信息。
+- **文件管理**：可以浏览、上传、下载和删除远程设备上的文件。
+- **屏幕监控**：实时查看远程设备的屏幕，进行屏幕操作的监控。
+- **鼠标控制**：远程控制目标设备的鼠标，进行操作。
+- **远程 Shell**：通过命令行在目标设备上执行远程 Shell 命令。
 
-## ��װ��ʹ��
+## 安装与使用
 
-1. ��¡�ֿ⣺
+1. 克隆仓库：
    ```bash
-   git clone https://github.com/yourusername/HotRAT-Nextgen.git
+   git clone https://github.com/SmaZone2020/HotRAT-Nextgen.git
    ```
 
-2. ����Ŀ�����룺
+2. 打开项目并编译：
 
-   ʹ�� Visual Studio ������֧�� WPF ��Ŀ�Ĺ��ߴ򿪲�������������
+   使用 Visual Studio 或其他支持 WPF 项目的工具打开并编译解决方案。
 
-3. ������Ŀ��
+3. 运行项目：
 
-   �ڱ�����ɺ����п�ִ���ļ������ɿ�ʼʹ�� HotRAT-Nextgen ��Զ�̿��ƹ��ܡ�
+   在编译完成后，运行可执行文件，即可开始使用 HotRAT-Nextgen 的远程控制功能。
 
-## ����ָ��
+## 贡献指南
 
-��ӭ�κ���ʽ�Ĺ��ף���������µĹ��ܽ�������� Bug������ͨ���ύ Issue ��������ϵ��Ҳ��ӭ Fork ����Ŀ������ Pull Request��
+欢迎任何形式的贡献！如果您有新的功能建议或发现了 Bug，可以通过提交 Issue 与我们联系，也欢迎 Fork 本项目并发起 Pull Request。
 
-## ����֤
+## 许可证
 
-����Ŀʹ�� [MIT License](LICENSE) Э�鿪Դ�����������ɵ�ʹ�á��޸ĺͷַ�����Ŀ��
+本项目使用 [MIT License](LICENSE) 协议开源。您可以自由地使用、修改和分发此项目。
 
 ---
 
-> ���� [HotRAT](https://github.com/Kr9jd/HotRAT) ��Ŀ���ж��ο�������лԭ��Ŀ�Ŀ�����Ϊ����Ŀ���µļ�ʵ������
+> 基于 [HotRAT](https://github.com/Kr9jd/HotRAT) 项目进行二次开发，感谢原项目的开发者为此项目打下的坚实基础。
 
-```
-�����ʵ����޸ĺ����ơ�
+进行适当的修改和完善。
+
+# 注意！！！！
+## 其中包含未完成的Razor项目WebRAT
