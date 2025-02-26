@@ -44,3 +44,4 @@
 
 # 注意！！！！
 ## 中心化服务端项目已经转为[NovaConnect/HotRAT4.0](https://github.com/NovaConnect/HotRAT4.0)与[NovaConnect/NovaConnect](https://github.com/NovaConnect/NovaConnect)
+## 十分建议使用HotRAT4.0项目
