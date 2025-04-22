@@ -38,9 +38,10 @@
 
 ---
 
-> 基于 [HotRAT](https://github.com/Kr9jd/HotRAT) 项目进行二次开发，感谢原项目的开发者为此项目打下的坚实基础。
+> 由 [HotRAT](https://github.com/Kr9jd/HotRAT) 项目作者指导开发
 
 进行适当的修改和完善。
 
 # 注意！！！！
-## 其中包含未完成的Razor项目WebRAT
+## 中心化服务端项目已经转为[NovaConnect/HotRAT4.0](https://github.com/NovaConnect/HotRAT4.0)与[NovaConnect/NovaConnect](https://github.com/NovaConnect/NovaConnect)
+## 十分建议使用HotRAT4.0项目
